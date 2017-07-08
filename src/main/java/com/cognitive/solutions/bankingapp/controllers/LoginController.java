@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = URIConstants.REGISTRATION_BASE_URI)
+@RequestMapping(value = URIConstants.LOGIN_BASE_URI)
 public class LoginController {
 
     private static final Logger logger = LoggerFactory
@@ -21,21 +21,12 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value = URIConstants.CREDIT, method = RequestMethod.POST,
+    @RequestMapping(method = RequestMethod.POST,
             produces = {"application/json"}, consumes = {"application/json"})
     public
     @ResponseBody
-    ControllerResponse credit() {
-        logger.info("Starting Debiting in Controller layer");
-        return null;
-    }
-
-    @RequestMapping(value = URIConstants.DEBIT, method = RequestMethod.POST,
-            produces = {"application/json"}, consumes = {"application/json"})
-    public
-    @ResponseBody
-    ControllerResponse debit() {
-        logger.info("Starting Crediting in Controller layer");
+    ControllerResponse login() {
+        logger.info("");
         return null;
     }
 

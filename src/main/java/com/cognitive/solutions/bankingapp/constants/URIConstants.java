@@ -5,5 +5,5 @@ public class URIConstants {
     public static final String DEBIT = "/debit";
     public static final String TRANSACTION_BASE_URI = "/transaction";
     public static final String REGISTRATION_BASE_URI = "/register";
-    public static final String ç = "/login";
+    public static final String LOGIN_BASE_URI = "/login";
 }
