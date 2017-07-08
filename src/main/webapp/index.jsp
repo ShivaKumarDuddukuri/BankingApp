@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>TechMojo Transaction App</h2>
+<h2>Banking Application</h2>
 </body>
 </html>
