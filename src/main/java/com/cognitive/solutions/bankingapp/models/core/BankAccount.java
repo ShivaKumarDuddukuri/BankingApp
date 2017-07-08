@@ -8,6 +8,15 @@ public class BankAccount {
     private int accountNumber;
     private AccountType accountType;
     private List<Transaction> transactionList;
+    private List<Customer> beneficiary;
+
+    public List<Customer> getBeneficiary() {
+        return beneficiary;
+    }
+
+    public void setBeneficiary(List<Customer> beneficiary) {
+        this.beneficiary = beneficiary;
+    }
 
     public Customer getOwner() {
         return owner;

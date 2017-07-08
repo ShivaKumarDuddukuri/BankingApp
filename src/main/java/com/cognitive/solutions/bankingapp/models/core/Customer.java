@@ -7,7 +7,6 @@ public class Customer {
     private int id;
     private String name;
     private String email;
-    private String ssn;
     private String date_of_birth;
     private String city;
     private String state;
@@ -79,14 +78,6 @@ public class Customer {
 
     public void setPhone(BigInteger phone) {
         this.phone = phone;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
     }
 
     public String getDate_of_birth() {

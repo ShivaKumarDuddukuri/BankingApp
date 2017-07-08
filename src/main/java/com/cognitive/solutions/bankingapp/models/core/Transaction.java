@@ -11,8 +11,8 @@ public class Transaction {
     private TransactionType transaction_type;
     private String description;
     private String status;
-    private Timestamp timestamp_created;
-    private Timestamp timestamp_updated;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 
     public int getId() {
         return id;
@@ -70,20 +70,20 @@ public class Transaction {
         this.status = status;
     }
 
-    public Timestamp getTimestamp_created() {
-        return timestamp_created;
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
-    public void setTimestamp_created(Timestamp timestamp_created) {
-        this.timestamp_created = timestamp_created;
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Timestamp getTimestamp_updated() {
-        return timestamp_updated;
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setTimestamp_updated(Timestamp timestamp_updated) {
-        this.timestamp_updated = timestamp_updated;
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }
