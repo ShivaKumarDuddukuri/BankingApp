@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.config.beans;
 
 import com.cognitive.solutions.bankingapp.config.jdbc.JDBCDaoSpringConfig;
+import com.cognitive.solutions.bankingapp.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -23,6 +24,21 @@ public class RootContextConfig {
 
     @Autowired
     private DataSource dataSource;
+
+    @Bean
+    public LoginDao loginDao() {
+        return new LoginDaoImpl(dataSource);
+    }
+
+    @Bean
+    public RegistrationDao registrationDao() {
+        return new RegistrationDaoImpl(dataSource);
+    }
+
+    @Bean
+    public TransactionDao transactionDao() {
+        return new TransactionDaoImpl(dataSource);
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
