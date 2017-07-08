@@ -11,6 +11,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,4 +45,11 @@ public class WebBeansConfig extends WebMvcConfigurerAdapter {
 		return jsonConverter;
 	}
 
+	@Bean
+	public InternalResourceViewResolver internalResourceViewResolver(){
+		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+        internalResourceViewResolver.setPrefix("/WEB-INF/");
+		internalResourceViewResolver.setSuffix(".jsp");
+		return internalResourceViewResolver;
+	}
 }

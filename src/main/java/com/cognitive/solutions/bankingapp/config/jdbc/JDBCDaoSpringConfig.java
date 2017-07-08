@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class JDBCDaoSpringConfig {
 
     private static final String DB_SCRIPTS_LOCATION = "db_scripts/mysql//";
-    private static final String SQL_MIGRATION_PREFIX = "transactions_v";
+    private static final String SQL_MIGRATION_PREFIX = "bankingApp_v";
     private static final String SCHEMA = "transactions";
 
     @Value("${com.cognitive.solutions.bankingapp.transaction.driverClassName}")
