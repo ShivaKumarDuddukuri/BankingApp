@@ -16,6 +16,9 @@ public class BalanceInformation {
         this.accountNumber = accountNumber;
     }
 
+    public BalanceInformation() {
+    }
+
     public int getAmount() {
         return amount;
     }

@@ -30,7 +30,6 @@ public class LoginController {
     void login(HttpServletRequest request,
                HttpServletResponse response) {
         loginService.login(request, response);
-
     }
 
 }

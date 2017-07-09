@@ -20,6 +20,8 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
 
     public boolean register(RegistrationInfo registrationInfo) {
+        String REGISTER = "INSERT INTO bank_accounts ( external_users_id , account_type , balance,hold,account_number ) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(REGISTER);
         return false;
     }
 }

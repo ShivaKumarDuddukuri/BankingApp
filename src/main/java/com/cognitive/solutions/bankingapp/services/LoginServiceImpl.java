@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
         String pwd = request.getParameter("pwd");
 
         HttpSession session = request.getSession();
-        session.setAttribute("user", "Pankaj");
+        session.setAttribute("user", user);
 
         session.setMaxInactiveInterval(15 * 60);
         Cookie userName = new Cookie("user", user);

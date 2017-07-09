@@ -1,5 +1,6 @@
 package com.cognitive.solutions.bankingapp.models.input;
 
+import com.cognitive.solutions.bankingapp.models.core.AccountType;
 import com.cognitive.solutions.bankingapp.models.core.CurrencyType;
 import com.cognitive.solutions.bankingapp.models.core.Customer;
 
@@ -10,13 +11,23 @@ public class RegistrationInfo {
     private int userId;
     private double balance;
     private CurrencyType currencyType;
+    private AccountType accountType;
     private Customer customer;
 
-    public RegistrationInfo(int userId, double balance, CurrencyType currencyType, Customer customer) {
+    public RegistrationInfo(int userId, double balance, CurrencyType currencyType, AccountType accountType, Customer customer) {
         this.userId = userId;
         this.balance = balance;
         this.currencyType = currencyType;
         this.customer = customer;
+        this.accountType = accountType;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     public int getUserId() {
