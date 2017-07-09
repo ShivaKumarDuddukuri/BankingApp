@@ -1,7 +1,7 @@
 package com.cognitive.solutions.bankingapp.controllers;
 
 import com.cognitive.solutions.bankingapp.constants.URIConstants;
-import com.cognitive.solutions.bankingapp.services.LoginService;
+import com.cognitive.solutions.bankingapp.services.LogoutService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping(value = URIConstants.LOGIN_BASE_URI)
-public class LoginController {
+@RequestMapping(value = URIConstants.LOGOUT_BASE_URI)
+public class LogoutController {
 
     private static final Logger logger = LoggerFactory
-            .getLogger(LoginController.class);
+            .getLogger(LogoutController.class);
 
     @Autowired
-    private LoginService loginService;
+    private LogoutService logoutService;
 
     @RequestMapping(method = RequestMethod.POST,
             produces = {"application/json"})
     public
     @ResponseBody
-    void login(HttpServletRequest request,
-               HttpServletResponse response) {
-        loginService.login(request, response);
-
+    void logout(HttpServletRequest request,
+                HttpServletResponse response) {
+        logoutService.logout(request, response);
     }
 
 }

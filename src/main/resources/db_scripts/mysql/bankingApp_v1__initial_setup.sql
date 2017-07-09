@@ -40,14 +40,6 @@ CREATE TABLE transaction_details (
     ON UPDATE CASCADE
 );
 
-CREATE TABLE transactions (
-  account_id     INT NOT NULL,
-  transaction_id INT NOT NULL,
-  FOREIGN KEY (account_id) REFERENCES account (id)
-    ON UPDATE CASCADE,
-  FOREIGN KEY (transaction_id) REFERENCES transaction_details (transaction_id)
-    ON UPDATE CASCADE
-);
 
 CREATE TABLE beneficiary (
   account_id     INT NOT NULL,

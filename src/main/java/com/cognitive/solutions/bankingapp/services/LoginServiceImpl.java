@@ -1,10 +1,13 @@
 package com.cognitive.solutions.bankingapp.services;
 
-import com.cognitive.solutions.bankingapp.manager.LoginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -12,8 +15,17 @@ public class LoginServiceImpl implements LoginService {
     private static final Logger logger = LoggerFactory
             .getLogger(LoginServiceImpl.class);
 
-    @Autowired
-    private LoginManager loginManager;
 
+    public void login(HttpServletRequest request, HttpServletResponse response) {
+        String user = request.getParameter("user");
+        String pwd = request.getParameter("pwd");
 
+        HttpSession session = request.getSession();
+        session.setAttribute("user", "Pankaj");
+
+        session.setMaxInactiveInterval(15 * 60);
+        Cookie userName = new Cookie("user", user);
+        response.addCookie(userName);
+        String encodedURL = response.encodeRedirectURL("LoginSuccess.jsp");
+    }
 }

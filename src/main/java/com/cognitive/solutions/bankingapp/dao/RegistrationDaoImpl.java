@@ -1,5 +1,6 @@
 package com.cognitive.solutions.bankingapp.dao;
 
+import com.cognitive.solutions.bankingapp.models.input.RegistrationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,4 +19,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
     }
 
 
+    public boolean register(RegistrationInfo registrationInfo) {
+        return false;
+    }
 }
