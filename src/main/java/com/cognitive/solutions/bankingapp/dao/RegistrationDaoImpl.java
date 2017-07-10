@@ -28,8 +28,12 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
     public boolean register(RegistrationInfo registrationInfo) {
 
-        userDao.createUser(registrationInfo.getCustomer());
-        accountDao.createAccount(registrationInfo);
+        if (!userDao.createUser(registrationInfo.getCustomer())) {
+            return false;
+        }
+        if (accountDao.createAccount(registrationInfo)) {
+            return true;
+        }
         return false;
     }
 

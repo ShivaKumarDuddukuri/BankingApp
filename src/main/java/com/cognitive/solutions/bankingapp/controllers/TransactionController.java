@@ -30,6 +30,7 @@ public class TransactionController {
         return transactionService.transfer(bankAccount);
     }
 
+
     @RequestMapping(value = URIConstants.BALANCE, method = RequestMethod.GET,
             produces = {"application/json"}, consumes = {"application/json"})
     public
@@ -38,6 +39,7 @@ public class TransactionController {
         logger.info("Starting Crediting in Controller layer");
         return transactionService.getBalance(accountNumber);
     }
+
 
     @RequestMapping(value = URIConstants.STATEMENT, method = RequestMethod.GET,
             produces = {"application/json"}, consumes = {"application/json"})
@@ -49,6 +51,7 @@ public class TransactionController {
         logger.info("Starting Crediting in Controller layer");
         return transactionService.getStatement(accountNumber, fromDate, toDate);
     }
+
 
     @RequestMapping(value = URIConstants.ADD_BENEFICIARY, method = RequestMethod.POST,
             produces = {"application/json"}, consumes = {"application/json"})
