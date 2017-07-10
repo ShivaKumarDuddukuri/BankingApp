@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.manager;
 
 import com.cognitive.solutions.bankingapp.dao.TransactionDao;
+import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
 import com.cognitive.solutions.bankingapp.models.output.BankStatement;
@@ -29,5 +30,9 @@ public class TransactionManagerImpl implements TransactionManager {
 
     public boolean addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
         return transactionDao.addBeneficiary(beneficiaryDetails);
+    }
+
+    public boolean transfer(BankAccount bankAccount) {
+        return transactionDao.transfer(bankAccount);
     }
 }

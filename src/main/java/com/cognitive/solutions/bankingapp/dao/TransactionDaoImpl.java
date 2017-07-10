@@ -2,6 +2,7 @@ package com.cognitive.solutions.bankingapp.dao;
 
 import com.cognitive.solutions.bankingapp.dao.rowmappers.BalanceInfoRowMapper;
 import com.cognitive.solutions.bankingapp.dao.rowmappers.BankStatementRowMapper;
+import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
 import com.cognitive.solutions.bankingapp.models.output.BankStatement;
@@ -46,6 +47,10 @@ public class TransactionDaoImpl implements TransactionDao {
     public boolean addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
         String ADD_BENEFICIARY = "INSERT INTO bank_accounts ( external_users_id , account_type , balance,hold,account_number ) VALUES (?,?,?,?,?)";
         jdbcTemplate.update(ADD_BENEFICIARY);
+        return false;
+    }
+
+    public boolean transfer(BankAccount bankAccount) {
         return false;
     }
 }

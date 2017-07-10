@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.controllers;
 
 import com.cognitive.solutions.bankingapp.constants.URIConstants;
+import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.services.TransactionService;
@@ -24,9 +25,9 @@ public class TransactionController {
             produces = {"application/json"}, consumes = {"application/json"})
     public
     @ResponseBody
-    ControllerResponse debit() {
+    ControllerResponse transfer(@RequestBody BankAccount bankAccount) {
         logger.info("Starting Crediting in Controller layer");
-        return null;
+        return transactionService.transfer(bankAccount);
     }
 
     @RequestMapping(value = URIConstants.BALANCE, method = RequestMethod.GET,

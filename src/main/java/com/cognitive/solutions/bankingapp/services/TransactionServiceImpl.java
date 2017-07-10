@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.services;
 
 import com.cognitive.solutions.bankingapp.manager.TransactionManager;
+import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
@@ -32,6 +33,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     public ControllerResponse addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
         boolean addedBeneficiary = transactionManager.addBeneficiary(beneficiaryDetails);
+        return null;
+    }
+
+    public ControllerResponse transfer(BankAccount bankAccount) {
+        boolean isTransferred = transactionManager.transfer(bankAccount);
         return null;
     }
 }

@@ -24,7 +24,7 @@ public class RegistrationController {
     public
     @ResponseBody
     ControllerResponse register(@RequestBody RegistrationInfo registrationInfo) {
-        logger.info("");
+        logger.info("Registering Users in RegistrationController");
         return registrationService.register(registrationInfo);
     }
 }

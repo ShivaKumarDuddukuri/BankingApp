@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.manager;
 
 import com.cognitive.solutions.bankingapp.dao.RegistrationDao;
+import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.input.RegistrationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,8 @@ public class RegistrationManagerImpl implements RegistrationManager {
     private RegistrationDao registrationDao;
 
 
-    public boolean register(RegistrationInfo registrationInfo) {
-        return registrationDao.register(registrationInfo);
+    public ControllerResponse register(RegistrationInfo registrationInfo) {
+        boolean isRegistered = registrationDao.register(registrationInfo);
+        return null;
     }
 }

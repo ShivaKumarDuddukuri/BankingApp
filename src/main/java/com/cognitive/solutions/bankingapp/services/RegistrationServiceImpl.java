@@ -19,7 +19,18 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
     public ControllerResponse register(RegistrationInfo registrationInfo) {
-        boolean isRegistered = registrationManager.register(registrationInfo);
-        return null;
+        if (registrationInfo == null) {
+
+        }
+        if (registrationInfo.getAccountType() == null) {
+
+        }
+        if (registrationInfo.getCustomer().getDate_of_birth() == null) {
+
+        }
+        if (registrationInfo.getCustomer().getPhone() == null) {
+
+        }
+        return registrationManager.register(registrationInfo);
     }
 }
