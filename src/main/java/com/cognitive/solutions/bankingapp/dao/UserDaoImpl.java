@@ -40,4 +40,8 @@ public class UserDaoImpl implements UserDao {
         int rows = jdbcTemplate.update(CREATE_USER, params);
         return rows >= 1;
     }
+
+    public boolean validateUser(String userName, String password) {
+        return false;
+    }
 }

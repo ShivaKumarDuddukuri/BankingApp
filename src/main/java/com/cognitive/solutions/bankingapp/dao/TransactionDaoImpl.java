@@ -1,17 +1,17 @@
 package com.cognitive.solutions.bankingapp.dao;
 
 import com.cognitive.solutions.bankingapp.dao.rowmappers.BalanceInfoRowMapper;
-import com.cognitive.solutions.bankingapp.dao.rowmappers.BankStatementRowMapper;
 import com.cognitive.solutions.bankingapp.models.core.BankAccount;
+import com.cognitive.solutions.bankingapp.models.core.Transaction;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
-import com.cognitive.solutions.bankingapp.models.output.BankStatement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 public class TransactionDaoImpl implements TransactionDao {
 
@@ -24,25 +24,27 @@ public class TransactionDaoImpl implements TransactionDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+
     public BalanceInformation getBalance(int accountNumber) {
-        String GET_BALANCE = " ";
+        String GET_BALANCE = "SELECT * FROM account_details WHERE account_id = ?";
         try {
-            return jdbcTemplate.queryForObject(GET_BALANCE, new BalanceInfoRowMapper());
+            return jdbcTemplate.queryForObject(GET_BALANCE, new Object[]{accountNumber}, new BalanceInfoRowMapper());
         } catch (DataAccessException dae) {
             logger.error(" ");
         }
         return null;
     }
 
-    public BankStatement getStatement(int accountNumber, Long fromDate, Long toDate) {
-        String GET_STATEMENT = " ";
+    public List<Transaction> getStatement(int accountNumber, Long fromDate, Long toDate) {
+        String GET_STATEMENT = "SELECT * FROM transaction_details WHERE payer_id = ? AND createdAt = ? AND updatedAt = ?";
         try {
-            return jdbcTemplate.queryForObject(GET_STATEMENT, new BankStatementRowMapper());
+            return jdbcTemplate.queryForList(GET_STATEMENT, new Object[]{accountNumber, fromDate, toDate}, Transaction.class);
         } catch (DataAccessException dae) {
             logger.error(" ");
         }
         return null;
     }
+
 
     public boolean addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
         String ADD_BENEFICIARY = "INSERT INTO bank_accounts ( external_users_id , account_type , balance,hold,account_number ) VALUES (?,?,?,?,?)";

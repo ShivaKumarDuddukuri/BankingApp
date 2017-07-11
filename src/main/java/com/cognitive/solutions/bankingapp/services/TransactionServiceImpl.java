@@ -3,9 +3,8 @@ package com.cognitive.solutions.bankingapp.services;
 import com.cognitive.solutions.bankingapp.manager.TransactionManager;
 import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
+import com.cognitive.solutions.bankingapp.models.http.HttpResponseStatus;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
-import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
-import com.cognitive.solutions.bankingapp.models.output.BankStatement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +21,48 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     public ControllerResponse getBalance(int accountNumber) {
-        BalanceInformation balanceInformation = transactionManager.getBalance(accountNumber);
-        return null;
+        if (accountNumber <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Account Number");
+        }
+        return transactionManager.getBalance(accountNumber);
     }
 
     public ControllerResponse getStatement(int accountNumber, Long fromDate, Long toDate) {
-        BankStatement bankStatement = transactionManager.getStatement(accountNumber, fromDate, toDate);
-        return null;
+        if (accountNumber <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Account Number");
+        }
+        if (fromDate <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_DATE, "Invalid Date");
+        }
+        if (toDate <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_DATE, "Invalid Date");
+        }
+        return transactionManager.getStatement(accountNumber, fromDate, toDate);
     }
 
     public ControllerResponse addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
-        boolean addedBeneficiary = transactionManager.addBeneficiary(beneficiaryDetails);
-        return null;
+        if (beneficiaryDetails == null) {
+            new ControllerResponse(HttpResponseStatus.INVALID_BENEFICIARY, "Invalid Beneficiary Info");
+        }
+        if (beneficiaryDetails.getAccountId() <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Account Number");
+        }
+        if (beneficiaryDetails.getBeneficiaryId() <= 0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Beneficiary Id");
+        }
+        return transactionManager.addBeneficiary(beneficiaryDetails);
     }
 
     public ControllerResponse transfer(BankAccount bankAccount) {
-        boolean isTransferred = transactionManager.transfer(bankAccount);
-        return null;
+        if (bankAccount == null) {
+            new ControllerResponse(HttpResponseStatus.INVALID_BANK_ACCOUNT, "Invalid Bank Account");
+        }
+        if (bankAccount.getTransactionList() == null || bankAccount.getTransactionList().isEmpty()) {
+            new ControllerResponse(HttpResponseStatus.INVALID_PAYEE_LIST, "Invalid Payee List");
+        }
+        if (bankAccount.getAccountNumber()<=0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Account Number");
+        }
+        return transactionManager.transfer(bankAccount);
     }
 }
