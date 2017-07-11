@@ -1,12 +1,14 @@
 package com.cognitive.solutions.bankingapp.models.core;
 
 import java.math.BigInteger;
+import java.sql.Date;
 
 public class Customer {
 
     private int id;
     private String name;
     private String email;
+    private String password;
     private String date_of_birth;
     private String city;
     private String state;
@@ -14,6 +16,14 @@ public class Customer {
     private int pincode;
     private BigInteger phone;
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;

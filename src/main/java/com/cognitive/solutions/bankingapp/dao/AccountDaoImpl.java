@@ -20,8 +20,9 @@ public class AccountDaoImpl implements AccountDao {
 
 
     public boolean createAccount(RegistrationInfo registrationInfo) {
-        String ADD_ACCOUNT = "INSERT INTO bank_accounts ( external_users_id , account_type , balance,hold,account_number ) VALUES (?,?,?,?,?)";
-        jdbcTemplate.update(ADD_ACCOUNT);
-        return false;
+        String ADD_ACCOUNT = " INSERT INTO account_details (  user_id, balance , currency_type ) VALUES (?,?,?) ";
+        Object[] params = new Object[]{registrationInfo.getUserId(), registrationInfo.getBalance(), registrationInfo.getCurrencyType()};
+        int rows = jdbcTemplate.update(ADD_ACCOUNT, params);
+        return rows >= 1;
     }
 }
