@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.manager;
 
-import com.cognitive.solutions.bankingapp.dao.RegistrationDao;
+import com.cognitive.solutions.bankingapp.dao.AccountDao;
+import com.cognitive.solutions.bankingapp.dao.UserDao;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.http.HttpResponseStatus;
 import com.cognitive.solutions.bankingapp.models.input.RegistrationInfo;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class RegistrationManagerImpl implements RegistrationManager {
@@ -16,14 +18,21 @@ public class RegistrationManagerImpl implements RegistrationManager {
             .getLogger(RegistrationManagerImpl.class);
 
     @Autowired
-    private RegistrationDao registrationDao;
+    private UserDao userDao;
 
+    @Autowired
+    private AccountDao accountDao;
 
+    @Transactional
     public ControllerResponse register(RegistrationInfo registrationInfo) {
-        boolean isRegistered = registrationDao.register(registrationInfo);
-        if (isRegistered) {
+        logger.info("Registering Users in RegistrationManagerImpl");
+
+        if (!userDao.createUser(registrationInfo.getCustomer())) {
+            return new ControllerResponse(HttpResponseStatus.REGISTRATION_FAILED, "Registartion Failed");
+        }
+        if (accountDao.createAccount(registrationInfo)) {
             return new ControllerResponse(HttpResponseStatus.REGISTRATION_SUCCESSFUL, "Successfully Registered");
         }
-        return new ControllerResponse(HttpResponseStatus.REGISTRATION_INFO_INVALID, "Registartion Failed");
+        return new ControllerResponse(HttpResponseStatus.REGISTRATION_FAILED, "Registartion Failed");
     }
 }

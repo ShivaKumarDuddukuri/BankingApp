@@ -17,6 +17,7 @@ public class LogoutServiceImpl implements LogoutService {
 
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Trying to Logout in LogoutServiceImpl");
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {

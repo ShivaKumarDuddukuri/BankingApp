@@ -17,6 +17,7 @@ public class LoginServiceImpl implements LoginService {
 
 
     public void login(HttpServletRequest request, HttpServletResponse response) {
+        logger.info("Trying to Login in LoginServiceImpl");
         String user = request.getParameter("user");
         String pwd = request.getParameter("pwd");
 

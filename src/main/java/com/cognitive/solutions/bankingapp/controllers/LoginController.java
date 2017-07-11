@@ -29,6 +29,7 @@ public class LoginController {
     @ResponseBody
     void login(HttpServletRequest request,
                HttpServletResponse response) {
+        logger.info("Trying to Login in LoginController");
         loginService.login(request, response);
     }
 

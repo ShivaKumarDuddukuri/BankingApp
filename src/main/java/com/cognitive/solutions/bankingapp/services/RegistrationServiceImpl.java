@@ -20,6 +20,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 
     public ControllerResponse register(RegistrationInfo registrationInfo) {
+
+        logger.info("Registering Users in RegistrationServiceImpl");
         if (registrationInfo == null) {
             new ControllerResponse(HttpResponseStatus.REGISTRATION_INFO_INVALID, "Registartion Information cant be null");
         }

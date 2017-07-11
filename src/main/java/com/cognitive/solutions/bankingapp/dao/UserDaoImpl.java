@@ -4,6 +4,7 @@ import com.cognitive.solutions.bankingapp.models.core.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.text.ParseException;
@@ -21,8 +22,9 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
+    @Transactional
     public boolean createUser(Customer customer) {
+        logger.info("creating  User in UserDaoImpl");
         String CREATE_USER = " INSERT INTO user ( user_id, name, password, email, dob, city, state, " +
                 " country, pincode, phone) VALUES (?,?,?,?,?,?,?,?,?,?) ";
         java.sql.Date sqlDate = null;

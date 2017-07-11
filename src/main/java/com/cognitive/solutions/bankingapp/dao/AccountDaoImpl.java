@@ -4,6 +4,7 @@ import com.cognitive.solutions.bankingapp.models.input.RegistrationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 
@@ -18,8 +19,9 @@ public class AccountDaoImpl implements AccountDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
+    @Transactional
     public boolean createAccount(RegistrationInfo registrationInfo) {
+        logger.info("creating  Account in AccountDaoImpl");
         String ADD_ACCOUNT = " INSERT INTO account_details (  user_id, balance , currency_type ) VALUES (?,?,?) ";
         Object[] params = new Object[]{registrationInfo.getUserId(), registrationInfo.getBalance(), registrationInfo.getCurrencyType()};
         int rows = jdbcTemplate.update(ADD_ACCOUNT, params);

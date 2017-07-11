@@ -29,6 +29,7 @@ public class LogoutController {
     @ResponseBody
     void logout(HttpServletRequest request,
                 HttpServletResponse response) {
+        logger.info("Trying to Logout in LogoutController");
         logoutService.logout(request, response);
     }
 
