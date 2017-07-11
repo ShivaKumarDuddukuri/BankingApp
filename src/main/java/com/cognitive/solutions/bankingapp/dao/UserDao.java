@@ -6,4 +6,6 @@ public interface UserDao {
 
 
     boolean createUser(Customer customer);
+
+    boolean validateUser(String userName, String password);
 }

@@ -9,7 +9,9 @@ public enum HttpResponseStatus {
     CREDIT_SUCCESS("Credited Successfully"),
     REGISTRATION_INFO_INVALID("Invalid Registration Information"),
     REGISTRATION_SUCCESSFUL(" Registration Successfull"),
-    REGISTRATION_FAILED(" Registration failed");
+    REGISTRATION_FAILED(" Registration failed"),
+    LOGIN_SUCCESSFUL(" Login Successfull"),
+    LOGIN_FAILED(" Login failed");
 
     private HttpResponseStatus(String value) {
 

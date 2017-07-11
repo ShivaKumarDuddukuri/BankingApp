@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Service
 public class LogoutServiceImpl implements LogoutService {
@@ -18,6 +19,7 @@ public class LogoutServiceImpl implements LogoutService {
 
     public void logout(HttpServletRequest request, HttpServletResponse response) {
         logger.info("Trying to Logout in LogoutServiceImpl");
+        response.setContentType("text/html");
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -33,6 +35,12 @@ public class LogoutServiceImpl implements LogoutService {
         if (session != null) {
             session.invalidate();
         }
+        try {
+            response.sendRedirect("login.html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
