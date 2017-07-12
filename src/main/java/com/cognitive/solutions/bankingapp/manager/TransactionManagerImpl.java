@@ -41,8 +41,8 @@ public class TransactionManagerImpl implements TransactionManager {
         return new ControllerResponse(HttpResponseStatus.FAILURE, "Beneficiary Addition Failed");
     }
 
-    public ControllerResponse transfer(BankAccount bankAccount) {
-        if (transactionDao.transfer(bankAccount)) {
+    public ControllerResponse transfer(Transaction transaction) {
+        if (transactionDao.transfer(transaction)) {
             return new ControllerResponse(HttpResponseStatus.SUCCESS, "Transfer Successfull");
         }
         return new ControllerResponse(HttpResponseStatus.FAILURE, "Transfer Failed");

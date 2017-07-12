@@ -1,6 +1,7 @@
 package com.cognitive.solutions.bankingapp.manager;
 
 import com.cognitive.solutions.bankingapp.models.core.BankAccount;
+import com.cognitive.solutions.bankingapp.models.core.Transaction;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
@@ -15,5 +16,5 @@ public interface TransactionManager {
 
     ControllerResponse addBeneficiary(BeneficiaryDetails beneficiaryDetails);
 
-    ControllerResponse transfer(BankAccount bankAccount);
+    ControllerResponse transfer(Transaction transaction);
 }

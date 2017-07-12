@@ -1,7 +1,6 @@
 package com.cognitive.solutions.bankingapp.dao;
 
 import com.cognitive.solutions.bankingapp.dao.rowmappers.BalanceInfoRowMapper;
-import com.cognitive.solutions.bankingapp.models.core.BankAccount;
 import com.cognitive.solutions.bankingapp.models.core.Transaction;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.models.output.BalanceInformation;
@@ -47,12 +46,18 @@ public class TransactionDaoImpl implements TransactionDao {
 
 
     public boolean addBeneficiary(BeneficiaryDetails beneficiaryDetails) {
-        String ADD_BENEFICIARY = "INSERT INTO bank_accounts ( external_users_id , account_type , balance,hold,account_number ) VALUES (?,?,?,?,?)";
-        jdbcTemplate.update(ADD_BENEFICIARY);
-        return false;
+        String ADD_BENEFICIARY = "INSERT INTO beneficiary VALUES (?,?)";
+        return (jdbcTemplate.update(ADD_BENEFICIARY,
+                new Object[]{beneficiaryDetails.getAccountId(), beneficiaryDetails.getBeneficiaryId()}) > 0 ? true
+                : false);
     }
 
-    public boolean transfer(BankAccount bankAccount) {
-        return false;
+    public boolean transfer(Transaction transaction) {
+        String ADD_TRANSACTION = "INSERT INTO transaction_details VALUES(?,?,?,?,?,?,?,?)";
+        return (jdbcTemplate.update(ADD_TRANSACTION,
+                new Object[]{transaction.getPayer_id(), transaction.getPayee_id(), transaction.getAmount(),
+                        transaction.getTransaction_type().toString(), transaction.getDescription(),
+                        transaction.getStatus(), transaction.getCreatedAt(), transaction.getUpdatedAt()}) > 0 ? true
+                : false);
     }
 }

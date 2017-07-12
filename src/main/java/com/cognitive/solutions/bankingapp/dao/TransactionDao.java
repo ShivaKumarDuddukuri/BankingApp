@@ -16,5 +16,5 @@ public interface TransactionDao {
 
     boolean addBeneficiary(BeneficiaryDetails beneficiaryDetails);
 
-    boolean transfer(BankAccount bankAccount);
+    boolean transfer(Transaction transaction);
 }

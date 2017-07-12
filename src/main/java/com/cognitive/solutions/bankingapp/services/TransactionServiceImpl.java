@@ -1,7 +1,7 @@
 package com.cognitive.solutions.bankingapp.services;
 
 import com.cognitive.solutions.bankingapp.manager.TransactionManager;
-import com.cognitive.solutions.bankingapp.models.core.BankAccount;
+import com.cognitive.solutions.bankingapp.models.core.Transaction;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.http.HttpResponseStatus;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
@@ -53,16 +53,13 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionManager.addBeneficiary(beneficiaryDetails);
     }
 
-    public ControllerResponse transfer(BankAccount bankAccount) {
-        if (bankAccount == null) {
+    public ControllerResponse transfer(Transaction transaction) {
+        if (transaction.getPayee_id()<=0) {
             new ControllerResponse(HttpResponseStatus.INVALID_BANK_ACCOUNT, "Invalid Bank Account");
         }
-        if (bankAccount.getTransactionList() == null || bankAccount.getTransactionList().isEmpty()) {
-            new ControllerResponse(HttpResponseStatus.INVALID_PAYEE_LIST, "Invalid Payee List");
+        if (transaction.getPayer_id()<=0) {
+            new ControllerResponse(HttpResponseStatus.INVALID_BANK_ACCOUNT, "Invalid Bank Account");
         }
-        if (bankAccount.getAccountNumber()<=0) {
-            new ControllerResponse(HttpResponseStatus.INVALID_ACCOUNT_NUMBER, "Invalid Account Number");
-        }
-        return transactionManager.transfer(bankAccount);
+        return transactionManager.transfer(transaction);
     }
 }

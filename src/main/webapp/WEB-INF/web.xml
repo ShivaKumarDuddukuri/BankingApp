@@ -23,6 +23,16 @@
         <listener-class>com.cognitive.solutions.bankingapp.context.utils.ContextListener</listener-class>
     </listener>
 
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.cognitive.solutions.bankingapp.filters.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
     <servlet>
         <servlet-name>dispatcher-servlet</servlet-name>
@@ -33,14 +43,14 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>com.tomojo.config.web.WebBeansConfig</param-value>
+            <param-value>com.cognitive.solutions.bankingapp.config.web.WebBeansConfig</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>dispatcher-servlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 
 

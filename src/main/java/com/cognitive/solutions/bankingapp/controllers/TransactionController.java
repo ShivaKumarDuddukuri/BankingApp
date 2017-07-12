@@ -1,7 +1,7 @@
 package com.cognitive.solutions.bankingapp.controllers;
 
 import com.cognitive.solutions.bankingapp.constants.URIConstants;
-import com.cognitive.solutions.bankingapp.models.core.BankAccount;
+import com.cognitive.solutions.bankingapp.models.core.Transaction;
 import com.cognitive.solutions.bankingapp.models.http.ControllerResponse;
 import com.cognitive.solutions.bankingapp.models.input.BeneficiaryDetails;
 import com.cognitive.solutions.bankingapp.services.TransactionService;
@@ -25,9 +25,9 @@ public class TransactionController {
             produces = {"application/json"}, consumes = {"application/json"})
     public
     @ResponseBody
-    ControllerResponse transfer(@RequestBody BankAccount bankAccount) {
-        logger.info("Starting Crediting in Controller layer");
-        return transactionService.transfer(bankAccount);
+    ControllerResponse transfer(@RequestBody Transaction transaction) {
+        logger.info("Starting Transfer in Controller layer");
+        return transactionService.transfer(transaction);
     }
 
 
@@ -36,7 +36,7 @@ public class TransactionController {
     public
     @ResponseBody
     ControllerResponse getBalance(@RequestParam(value = "accountNumber") int accountNumber) {
-        logger.info("Starting Crediting in Controller layer");
+        logger.info("Starting GetBalance in Controller layer");
         return transactionService.getBalance(accountNumber);
     }
 
@@ -48,7 +48,7 @@ public class TransactionController {
     ControllerResponse getStatement(@RequestParam(value = "accountNumber") int accountNumber,
                                     @RequestParam(value = "fromDate") Long fromDate,
                                     @RequestParam(value = "toDate") Long toDate) {
-        logger.info("Starting Crediting in Controller layer");
+        logger.info("Starting Get Statement in Controller layer");
         return transactionService.getStatement(accountNumber, fromDate, toDate);
     }
 
@@ -58,7 +58,7 @@ public class TransactionController {
     public
     @ResponseBody
     ControllerResponse addBeneficiary(@RequestBody BeneficiaryDetails beneficiaryDetails) {
-        logger.info("Starting Crediting in Controller layer");
+        logger.info("Starting Adding Beneficiary in Controller layer");
         return transactionService.addBeneficiary(beneficiaryDetails);
     }
 }

@@ -42,6 +42,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public boolean validateUser(String userName, String password) {
-        return false;
+        return true;
     }
 }
