@@ -42,6 +42,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     public boolean validateUser(String userName, String password) {
-        return true;
+        logger.info("validateUser   in UserDaoImpl");
+        String VALIDATE_USER = " SELECT COUNT(*) FROM user WHERE name = ? AND password = ? ";
+        Object[] params = new Object[]{userName,password};
+
+        int rows = jdbcTemplate.queryForObject(VALIDATE_USER, params, Integer.class);
+        return rows >= 1;
     }
 }

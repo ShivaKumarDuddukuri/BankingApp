@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class RegistrationManagerImpl implements RegistrationManager {
@@ -23,7 +22,6 @@ public class RegistrationManagerImpl implements RegistrationManager {
     @Autowired
     private AccountDao accountDao;
 
-    @Transactional
     public ControllerResponse register(RegistrationInfo registrationInfo) {
         logger.info("Registering Users in RegistrationManagerImpl");
 

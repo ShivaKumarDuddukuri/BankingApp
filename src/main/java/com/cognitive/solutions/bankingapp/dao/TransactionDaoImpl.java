@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 import java.util.List;
 
 public class TransactionDaoImpl implements TransactionDao {
@@ -41,7 +42,7 @@ public class TransactionDaoImpl implements TransactionDao {
         } catch (DataAccessException dae) {
             logger.error(" ");
         }
-        return null;
+        return Collections.emptyList();
     }
 
 
@@ -56,7 +57,7 @@ public class TransactionDaoImpl implements TransactionDao {
         String ADD_TRANSACTION = "INSERT INTO transaction_details VALUES(?,?,?,?,?,?,?,?)";
         return (jdbcTemplate.update(ADD_TRANSACTION,
                 new Object[]{transaction.getPayer_id(), transaction.getPayee_id(), transaction.getAmount(),
-                        transaction.getTransaction_type().toString(), transaction.getDescription(),
+                        transaction.getTransaction_type().ordinal(), transaction.getDescription(),
                         transaction.getStatus(), transaction.getCreatedAt(), transaction.getUpdatedAt()}) > 0 ? true
                 : false);
     }

@@ -14,6 +14,9 @@ public class RegistrationInfo {
     private AccountType accountType;
     private Customer customer;
 
+    public RegistrationInfo() {
+    }
+
     public RegistrationInfo(int userId, double balance, CurrencyType currencyType, AccountType accountType, Customer customer) {
         this.userId = userId;
         this.balance = balance;

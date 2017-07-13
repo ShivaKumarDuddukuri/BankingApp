@@ -9,12 +9,13 @@ import java.sql.SQLException;
 
 public class BalanceInfoRowMapper implements RowMapper<BalanceInformation> {
 
+	public BalanceInformation mapRow(ResultSet resultSet, int i) throws SQLException {
+		BalanceInformation balanceInformation = new BalanceInformation();
+		balanceInformation.setAccountNumber(resultSet.getInt("account_id"));
+		balanceInformation.setAmount(resultSet.getInt("balance"));
+		CurrencyType currencyType = CurrencyType.values()[resultSet.getInt("currency_type")];
+		balanceInformation.setCurrencyType(currencyType);
+		return balanceInformation;
+	}
 
-    public BalanceInformation mapRow(ResultSet resultSet, int i) throws SQLException {
-        BalanceInformation balanceInformation = new BalanceInformation();
-        balanceInformation.setAccountNumber(resultSet.getInt(""));
-        balanceInformation.setAmount(resultSet.getInt(""));
-        balanceInformation.setCurrencyType(CurrencyType.valueOf(resultSet.getString("")));
-        return balanceInformation;
-    }
 }

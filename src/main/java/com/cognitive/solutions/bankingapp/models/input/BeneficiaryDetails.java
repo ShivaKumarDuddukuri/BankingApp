@@ -7,6 +7,9 @@ public class BeneficiaryDetails {
     private int accountId;
     private int beneficiaryId;
 
+    public BeneficiaryDetails() {
+    }
+
     public BeneficiaryDetails(int accountId, int beneficiaryId) {
         this.accountId = accountId;
         this.beneficiaryId = beneficiaryId;

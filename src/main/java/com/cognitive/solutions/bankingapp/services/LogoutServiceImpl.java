@@ -24,7 +24,7 @@ public class LogoutServiceImpl implements LogoutService {
             session.invalidate();
         }
         try {
-            response.sendRedirect("login.html");
+            response.sendRedirect(request.getContextPath() +"/login.html");
         } catch (IOException e) {
             e.printStackTrace();
         }

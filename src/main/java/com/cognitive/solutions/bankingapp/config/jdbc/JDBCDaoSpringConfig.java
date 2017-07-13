@@ -42,4 +42,12 @@ public class JDBCDaoSpringConfig {
         return dataSource;
     }
 
+    @DependsOn("dataSource")
+    @Bean
+    public DataSourceTransactionManager transactionManager() throws IllegalArgumentException, NamingException {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(dataSource());
+        return transactionManager;
+    }
+
 }

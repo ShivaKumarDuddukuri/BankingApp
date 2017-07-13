@@ -14,7 +14,7 @@ public class Customer {
     private String state;
     private String country;
     private int pincode;
-    private BigInteger phone;
+    private String phone;
 
 
     public String getPassword() {
@@ -82,11 +82,11 @@ public class Customer {
         this.pincode = pincode;
     }
 
-    public BigInteger getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(BigInteger phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

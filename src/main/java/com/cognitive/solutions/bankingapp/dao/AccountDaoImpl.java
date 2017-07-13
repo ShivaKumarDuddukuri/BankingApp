@@ -23,7 +23,7 @@ public class AccountDaoImpl implements AccountDao {
     public boolean createAccount(RegistrationInfo registrationInfo) {
         logger.info("creating  Account in AccountDaoImpl");
         String ADD_ACCOUNT = " INSERT INTO account_details (  user_id, balance , currency_type ) VALUES (?,?,?) ";
-        Object[] params = new Object[]{registrationInfo.getUserId(), registrationInfo.getBalance(), registrationInfo.getCurrencyType()};
+        Object[] params = new Object[]{registrationInfo.getCustomer().getId(), registrationInfo.getBalance(), registrationInfo.getCurrencyType().ordinal()};
         int rows = jdbcTemplate.update(ADD_ACCOUNT, params);
         return rows >= 1;
     }
